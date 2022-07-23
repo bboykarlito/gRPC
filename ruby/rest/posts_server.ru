@@ -1,15 +1,17 @@
-require 'rack/lobster'
+require 'rack'
 require_relative '../environment/env'
 require 'pry'
 require './db/query'
 
 
 class Posts
+  def initialize
+    @data = PostsQuery.new
+  end
   def call(env)
     req = Rack::Request.new(env)
-    data = PostsQuery.new
     limit = req.params["limit"].to_i - 1
-    resp = data.data[0..limit].map do |id, title, text, user_id, user_table_id,
+    resp = @data.data[0..limit].map do |id, title, text, user_id, user_table_id,
       username, first_name, last_name, email, bio, age|
       {
         username: username,
