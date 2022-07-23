@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package api;
+
+service UserPosts {
+  rpc GetPost(PostId) returns (Post) {}
+
+  rpc GetPosts(Request) returns (stream Post) {}
+
+  rpc GetBestPost(stream PostId) returns (Post) {}
+
+  rpc GetPostsByIds(stream PostId) returns (stream Post) {}
+}
+
+message Request {
+  int32 limit = 1;
+}
+
+message Post {
+  User user = 1;
+  string title = 3;
+  string text = 4;
+}
+
+message User {
+  string username = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string bio = 5;
+  string age = 6;
+}
+
+message PostId {
+  int32 post_id = 1;
+}
