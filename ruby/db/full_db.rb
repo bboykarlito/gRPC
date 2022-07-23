@@ -2,7 +2,7 @@ require 'faker'
 require_relative '../environment/env'
 require 'pry'
 
-1500.times do 
+3000.times do 
   query = "INSERT INTO users (username, first_name, last_name, email, bio, age) VALUES 
   	('#{Faker::Lorem.characters(number: 10)}', 
   	 '#{Faker::Name.first_name.gsub(/[']/, "\\'")}', 
